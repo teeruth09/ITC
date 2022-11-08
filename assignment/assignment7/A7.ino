@@ -9,6 +9,9 @@
 #define switch4 10
 #define buzzer 6
 
+#define LDR_SENSOR A2
+
+
 #include <EEPROM.h>
 Adafruit_SSD1306 OLED(OLED_RESET);
 int hour, minute, second, Mode;
@@ -16,6 +19,9 @@ int wakeuptime[2], wakeupstatus;
 long timer1;
 int timerstatus;
 int countdowntime[2], countdownstatus;
+
+
+
 void setup()
 {
   Serial.begin(9600);
@@ -40,6 +46,12 @@ void setup()
 
 void loop()
 {
+  int value = analogRead(LDR_SENSOR);
+  Serial.print("LDR_SENSOR : ");
+  Serial.println(value);
+
+
+  
   if (digitalRead(switch4) == 0)
   {
     Mode = (Mode + 1) % 4;
